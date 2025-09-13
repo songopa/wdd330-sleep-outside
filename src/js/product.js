@@ -4,7 +4,7 @@ import ProductDetails from "./ProductDetails.mjs";
 
 const productId = getParam("product");
 
-const dataSource = new ProductData("json/tents.json");
+const dataSource = new ProductData("public/json/tents.json");
 
 const product = new ProductDetails(productId, dataSource);
 
