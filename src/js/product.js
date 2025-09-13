@@ -9,4 +9,3 @@ const dataSource = new ProductData("json/tents.json");
 const product = new ProductDetails(productId, dataSource);
 
 product.init();
-
