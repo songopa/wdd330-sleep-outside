@@ -4,6 +4,8 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  addRemoveListeners();
 }
 
 function cartItemTemplate(item) {
@@ -23,6 +25,24 @@ function cartItemTemplate(item) {
 </li>`;
 
   return newItem;
+}
+
+function addRemoveListeners() {
+  const removeButtons = document.querySelectorAll(".remove-item");
+  removeButtons.forEach(button => {
+    button.addEventListener("click", removeFromCart);
+  });
+}
+
+function removeFromCart(e) {
+  const idToRemove = e.target.dataset.id;
+  let cartItems = getLocalStorage("so-cart") || [];
+
+  cartItems = cartItems.filter(item => item.Id != idToRemove);
+
+  setLocalStorage("so-cart", cartItems);
+
+  renderCartContents();
 }
 
 renderCartContents();
