@@ -241,6 +241,26 @@ button {
   grid-column: 3;
 }
 
+/* .product-discount {
+  font-size: var(--small-font);
+  color: red;
+} */
+.product-discount {
+  color: var(--dark-grey);
+  font-size: var(--small-font);
+  margin-right: 2em;
+}
+#originalPrice {
+  text-decoration: line-through;
+}
+#discountPercent {
+  color: green;
+  font-size: var(--small-font);
+}
+#productPrice {
+  color: var(--tertiary-color);
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
