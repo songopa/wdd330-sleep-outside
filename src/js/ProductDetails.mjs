@@ -28,13 +28,15 @@ export default class ProductDetails {
 }
 
 function productDetailsTemplate(product) {
-    document.querySelector('h2').textContent = product.Brand.Name;
+    document.querySelector('h2').textContent = product.Brand?.Name || '';
     document.querySelector('h3').textContent = product.NameWithoutBrand;
 
     const productImage = document.getElementById('productImage');
     productImage.src = product.Image;
     productImage.alt = product.NameWithoutBrand;
 
+    document.getElementById('originalPrice').textContent = product.SuggestedRetailPrice;
+    document.getElementById('discountPercent').textContent = ((product.SuggestedRetailPrice-product.FinalPrice) / product.SuggestedRetailPrice * 100).toFixed() + '% Off';
     document.getElementById('productPrice').textContent = product.FinalPrice;
     document.getElementById('productColor').textContent = product.Colors[0].ColorName;
     document.getElementById('productDesc').innerHTML = product.DescriptionHtmlSimple;

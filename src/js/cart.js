@@ -31,10 +31,9 @@ function renderCartContents() {
 function removeItemFromCart(id) {
   let cart = getLocalStorage("so-cart") || [];
 
-  cart = cart.filter(item => item.Id !== id);
+  cart = cart.filter((item) => item.Id !== id);
 
   localStorage.setItem("so-cart", JSON.stringify(cart));
 
   renderCartContents();
 }
-
