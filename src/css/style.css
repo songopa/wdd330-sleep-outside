@@ -241,7 +241,6 @@ button {
   grid-column: 3;
 } */
 
-
 /* cart card redesign*/
 .cart-card {
   display: grid;
@@ -384,7 +383,7 @@ footer {
   color: var(--dark-grey);
 }
 
-.breadcrumb-item+.breadcrumb-item::before {
+.breadcrumb-item + .breadcrumb-item::before {
   content: ">";
   margin: 0 0.5rem;
   color: var(--dark-grey);
