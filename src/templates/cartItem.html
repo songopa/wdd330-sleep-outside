@@ -1,0 +1,33 @@
+<li class="cart-card divider">
+  <a href="#" class="cart-card__image">
+    <img src="{{Image}}" alt="{{Image}}" />
+  </a>
+  <a href="#">
+    <h2 class="card__name">{{Name}}</h2>
+  </a>
+  <small class="cart-card__color">{{Color}}</small>
+  <table class="card__table">
+    <thead>
+      <tr>
+        <th>Qty</th>
+        <th>Unit price</th>
+        <th>Subtotal</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <button class="decrease-item" data-id="{{Id}}">–</button>
+          {{Quantity}}
+          <button class="increase-item" data-id="{{Id}}">+</button>
+        </td>
+        <td>${{FinalPrice}}</td>
+        <td>${{Subtotal}}</td>
+        <td>
+          <button class="remove-item" data-id="{{Id}}">×</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</li>

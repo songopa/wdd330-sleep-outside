@@ -204,11 +204,11 @@ button {
 }
 
 /* Start cart list card styles */
-.cart-card {
+/* .cart-card {
   display: grid;
   grid-template-columns: 25% auto 15%;
   font-size: var(--small-font);
-  /* max-height: 120px; */
+  max-height: 120px;
   align-items: center;
 }
 
@@ -239,7 +239,40 @@ button {
 .cart-card__price {
   grid-row: 2;
   grid-column: 3;
+} */
+
+
+/* cart card redesign*/
+.cart-card {
+  display: grid;
+  grid-template-areas:
+    "image itemName"
+    "image itemColor"
+    "image table";
+  grid-template-columns: 25% auto;
+  column-gap: 1rem;
+  font-size: var(--small-font);
+  align-content: center;
 }
+
+.cart-card__image {
+  grid-area: image;
+}
+
+.card__name {
+  grid-area: itemName;
+  margin-top: 0.375rem;
+}
+
+.cart-card__color {
+  grid-area: itemColor;
+}
+
+.card__table {
+  grid-area: table;
+}
+
+/* End of cart card redesign*/
 
 /* .product-discount {
   font-size: var(--small-font);
@@ -280,4 +313,84 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+
+/* general*/
+
+.remove-item {
+  background-color: red;
+  margin: 0;
+}
+
+.decrease-item {
+  background-color: gray;
+}
+
+.increase-item {
+  background-color: green;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.d-none {
+  display: none;
+}
+
+.ps-relative {
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -1.5rem;
+  right: -0.2rem;
+  background-color: var(--primary-color);
+  color: black;
+  padding: 0.25rem;
+  border-radius: 50%;
+  font-size: var(--small-font);
+}
+
+/* breadcrumbs */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: whitesmoke;
+  border-radius: 8px;
+  margin: 1rem auto;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: var(--tertiary-color);
+  font-weight: bold;
+  margin: 0 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+.breadcrumb-item {
+  margin: 0 0.5rem;
+  font-size: var(--small-font);
+  color: var(--dark-grey);
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  content: ">";
+  margin: 0 0.5rem;
+  color: var(--dark-grey);
+}
+
+.breadcrumb span {
+  font-weight: bold;
+  color: var(--primary-color);
 }

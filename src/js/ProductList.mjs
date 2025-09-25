@@ -1,16 +1,17 @@
-import { renderListWithTemplate } from "./utils.mjs";
+import { renderListWithTemplate, fixImageUrl } from "./utils.mjs";
 
 function productCardTemplate(product) {
-    return `
-    <li class="product-card">
-      <a href="product_pages/index.html?product=${product.Id}">
-        <img src="${product.Image}" alt="${product.Name}">
-        <h2>${product.Brand.Name}</h2>
-        <h3>${product.Name}</h3>
-        <p class="product-card__price">$${product.FinalPrice}</p>
-      </a>
-    </li>
-    `;
+    const imageUrl = fixImageUrl(product.Images?.PrimaryMedium || product.Image || "");
+    
+    return "<li class=\"product-card\">" +
+        "<a href=\"/product_pages/index.html?product=" + product.Id + "\">" +
+        "<img src=\"" + imageUrl + "\" alt=\"" + (product.Name || "") + "\">" +
+        "<h2>" + (product.Brand?.Name || "") + "</h2>" +
+        "<h3>" + (product.Name || "") + "</h3>" +
+        "<p class=\"product-card__price\">$" + (product.FinalPrice || "") + "</p>" +
+        "</a>" +
+        "<button class=\"add-to-cart\" data-product-id=\"" + product.Id + "\">Add to Cart</button>" +
+        "</li>";
 }
 
 export default class ProductList {

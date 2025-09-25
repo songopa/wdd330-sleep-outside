@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, fixImageUrl } from "./utils.mjs";
 
 export default class ProductDetails {
 
@@ -31,8 +31,9 @@ function productDetailsTemplate(product) {
     document.querySelector('h2').textContent = product.Brand?.Name || '';
     document.querySelector('h3').textContent = product.NameWithoutBrand;
 
+    const imageUrl = fixImageUrl(product.Images?.PrimaryLarge || product.Image || "");
     const productImage = document.getElementById('productImage');
-    productImage.src = product.Image;
+    productImage.src = imageUrl;
     productImage.alt = product.NameWithoutBrand;
 
     document.getElementById('originalPrice').textContent = product.SuggestedRetailPrice;
