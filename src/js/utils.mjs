@@ -38,3 +38,87 @@ export function renderListWithTemplate(template, parentElement, list, position =
   }
   parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
+
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.innerHTML = template;
+  if (callback) {
+    callback(data);
+  }
+}
+
+export async function loadTemplate(path) {
+  const res = await fetch(path);
+  const template = await res.text();
+  return template;
+}
+
+export async function loadHeaderFooter() {
+  const header = await loadTemplate("../partials/header.html");
+  const footer = await loadTemplate("../partials/footer.html");
+
+  const headerElement = document.querySelector("#main-header");
+  const footerElement = document.querySelector("#main-footer");
+
+  renderWithTemplate(header, headerElement);
+  renderWithTemplate(footer, footerElement);
+
+  updateCartCount(); // Update cart count after loading header/footer
+}
+
+export function updateCartCount() {
+  const cartCount = getLocalStorage("so-cart")?.length || 0;
+  const cartCountElement = qs(".cart-count");
+  if (cartCountElement) {
+    cartCountElement.textContent = cartCount;
+  }
+}
+
+export function fixImageUrl(url) {
+  const originURL = window.location.origin; // Use the current origin URL
+  if (!url) return "";
+  if (url.startsWith("http") || url.startsWith("/")) {
+    return url;
+  }
+  return originURL + url;
+}
+
+export function addBreadcrumbItem(name, href) {
+  const breadcrumb = qs(".breadcrumb");
+  if (!breadcrumb) return;
+
+  const a = document.createElement("a");
+  a.href = href;
+  a.textContent = capitalizeFirstLetter(name);
+  a.className = "breadcrumb-item";
+
+  breadcrumb.appendChild(a);
+}
+
+export function capitalizeFirstLetter(str) {
+  if (typeof str !== "string" || str.length === 0) return str;
+  return str
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+export async function addProductToCart(productId) {
+  // get the product from the data source
+  const dataSource = new ProductData()
+  const product = await dataSource.findProductById(productId);
+
+  const cartItems = getLocalStorage("so-cart") || [];
+  //inspect the cart if product is in cart
+  const itemInCart = cartItems.find(item => item.Id === productId)
+  if (itemInCart) {
+    // increment quantity if item in cart
+    itemInCart.Quantity++;
+  } else {
+    // adding 'Quantity' key to product object before pushing it to cart.
+    // this helps when adjusting quantities in the cart.
+    product["Quantity"] = 1;
+    cartItems.push(product);
+  }
+  setLocalStorage("so-cart", cartItems);
+  // update the cart count in the header
+  updateCartCount();
+}
