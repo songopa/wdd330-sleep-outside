@@ -41,7 +41,7 @@ export default class ProductList {
 
     renderList(list) {
         //refactored render list from util js
-        renderListWithTemplate(productCardTemplate, this.listElement, list);
+        renderListWithTemplate(productCardTemplate, this.listElement, list, "afterbegin",true);
     }
 
     async sortAndRender(sortBy) {
