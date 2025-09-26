@@ -74,12 +74,13 @@ export function updateCartCount() {
 }
 
 export function fixImageUrl(url) {
-  const originURL = window.location.origin; // Use the current origin URL
+  // const originURL = window.location.origin;
+  const baseURL = import.meta.env.VITE_SERVER_URL;
   if (!url) return "";
   if (url.startsWith("http") || url.startsWith("/")) {
     return url;
   }
-  return originURL + url;
+  return baseURL + url;
 }
 
 export function addBreadcrumbItem(name, href) {

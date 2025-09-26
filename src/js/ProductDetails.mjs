@@ -43,4 +43,6 @@ function productDetailsTemplate(product) {
     document.getElementById('productDesc').innerHTML = product.DescriptionHtmlSimple;
 
     document.getElementById('addToCart').dataset.id = product.Id;
+    document.querySelector('.loader').style.display = 'none';
+    document.querySelector('.product-detail').style.display = 'block';
 }
