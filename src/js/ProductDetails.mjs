@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, fixImageUrl } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, fixImageUrl, addProductToCart, setClick, qs } from "./utils.mjs";
 
 export default class ProductDetails {
 
@@ -11,15 +11,7 @@ export default class ProductDetails {
     async init() {
         this.product = await this.dataSource.findProductById(this.productId);
         this.renderProductDetails();
-        document
-            .getElementById("addToCart")
-            .addEventListener('click', this.addProductToCart.bind(this));
-    }
-
-    addProductToCart() {
-        const cartItems = getLocalStorage("so-cart") || [];
-        cartItems.push(this.product);
-        setLocalStorage("so-cart", cartItems);
+        
     }
 
     renderProductDetails() {
@@ -42,7 +34,7 @@ function productDetailsTemplate(product) {
     document.getElementById('productColor').textContent = product.Colors[0].ColorName;
     document.getElementById('productDesc').innerHTML = product.DescriptionHtmlSimple;
 
-    document.getElementById('addToCart').dataset.id = product.Id;
+    document.querySelector("#addToCart").addEventListener("click", async () => { addProductToCart(product.Id) });
     document.querySelector('.loader').style.display = 'none';
     document.querySelector('.product-detail').style.display = 'block';
 }
