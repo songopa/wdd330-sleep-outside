@@ -47,6 +47,7 @@ export default class ProductList {
     async sortAndRender(sortBy) {
         let sortedProducts = [...this.products];
         if (sortBy === "name") {
+            
             sortedProducts.sort((a, b) => {
                 const nameA = (a.Name || "").toLowerCase();
                 const nameB = (b.Name || "").toLowerCase();
