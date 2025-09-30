@@ -157,7 +157,6 @@ button {
 
 /* Cart icon animation */
 @keyframes cart-bounce {
-
   0%,
   100% {
     transform: translateY(0);
@@ -329,7 +328,9 @@ footer {
   background-color: green;
 }
 
-.remove-item, .decrease-item, .increase-item {
+.remove-item,
+.decrease-item,
+.increase-item {
   color: white;
   border: 0;
   padding: 0.25rem 0.5rem;
@@ -349,7 +350,6 @@ footer {
 .ps-relative {
   position: relative;
 }
-
 
 /* breadcrumbs */
 .breadcrumb {
