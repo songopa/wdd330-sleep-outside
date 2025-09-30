@@ -99,15 +99,23 @@ p {
   color: var(--tertiary-color);
 }
 
-button {
+button, .button {
   padding: 0.5em 2em;
   background-color: var(--secondary-color);
   color: white;
   margin: auto;
   display: block;
-  border: 0;
+  border-radius: 4px;
   font-size: var(--large-font);
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  width: fit-content;
+  font-family: var(--font-body);
+}
+
+button:hover, .button:hover {
+  background-color: var(--tertiary-color);
 }
 
 .divider {

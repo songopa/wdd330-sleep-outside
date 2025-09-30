@@ -15,6 +15,7 @@ export default class ShoppingCart {
     this.setupEventListeners();
 
     addBreadcrumbItem("Cart", "/cart/index.html");
+    
   }
 
   prepareCartItemTemplate(template, item) {
@@ -40,6 +41,7 @@ export default class ShoppingCart {
       renderListWithTemplate(templateFn, this.listElement, list, "afterbegin", true);
       this.updateGrandTotal();
     }
+    this.updateCheckoutButton();
   }
 
   setupEventListeners() {
@@ -88,4 +90,20 @@ export default class ShoppingCart {
       totalSpan.textContent = `${total.toLocaleString("en-US")}`;
     } 
   }
+
+  updateCheckoutButton() {
+    const checkoutButton = qs("#checking-out");
+    if (checkoutButton) {
+      if (this.cartItems.length == 0) {
+        checkoutButton.innerText = "Please Add Items to Cart";
+      }
+      checkoutButton.addEventListener("click", (e) => {
+        if (this.cartItems.length === 0) {
+          e.preventDefault();
+          alert("Your cart is empty. Please add items before proceeding to checkout.");
+        }
+      });
+    }
+  }
+  
 }
