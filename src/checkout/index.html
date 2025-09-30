@@ -10,16 +10,16 @@
 
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/checkout-styles.css" />
-    <!-- <script src="../js/checkout.js" type="module"></script> -->
+    <script src="../js/checkout.js" type="module"></script>
   </head>
 
   <body>
     <header class="divider" id="main-header"></header>
 
     <main class="divider">
-      <div class="breadcrumb">
+      <!-- <div class="breadcrumb">
         <a class="breadcrumb-item" href="/">Home</a>
-      </div>
+      </div> -->
       <section class="products">
         <h2>Review & Place your Order</h2>
         <form name="checkout">
@@ -49,11 +49,11 @@
             <legend>Payment</legend>
             <div class="checkout__payment">
               <label for="cardNumber">Card Number</label>
-              <input type="text" name="cardNumber" id="cardNumber" required />
+              <input type="number" name="cardNumber" id="cardNumber" required readonly />
               <label for="expiration">Expiration</label>
-              <input type="text" name="expiration" id="expiration" required />
+              <input type="text" name="expiration" id="expiration" required readonly />
               <label for="code">CVV</label>
-              <input type="text" name="code" id="code" required />
+              <input type="number" name="code" id="code" required readonly />
             </div>
           </fieldset>
 
@@ -61,29 +61,26 @@
             <legend>Order Summary</legend>
 
             <div class="order__summary">
-              <div>Items</div>
-              <div id="num-items"></div>
-              <div>Subtotal</div>
-              <div id="cartTotal"></div>
-              <div>Tax</div>
-              <div id="tax"></div>
-              <div>Shipping</div>
-              <div id="shipping"></div>
-              <div>Total</div>
-              <div id="orderTotal"></div>
+              <div>
+                Items: <span id="num-items"></span>
+              </div>
+              <div>
+                Subtotal: <span id="cartTotal"></span>
+              </div>
+              <div>
+                Tax: <span id="tax"></span>
+              </div>
+              <div>
+                Shipping: <span id="shipping"></span> 
+              </div>
+              <div>
+                Total: <span id="orderTotal"></span> 
+              </div>
             </div>
           </fieldset>
           <button type="submit" id="checkoutSubmit">Checkout</button>
         </form>
 
-        <!-- <aside id="order-summary">
-          <h3>Order Summary</h3>
-          <p>Items: <span id="summary-item-count">0</span></p>
-          <p>Subtotal: $<span id="summary-subtotal">0.00</span></p>
-          <p>Tax: <span id="summary-tax">0.00</span></p>
-          <p>Shipping Estimate: <span id="summary-shipping">0.00</span></p>
-          <p><strong>Order Total: <span id="summary-total">0.00</span></strong></p>
-        </aside> -->
       </section>
     </main>
 

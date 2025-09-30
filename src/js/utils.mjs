@@ -1,4 +1,4 @@
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
@@ -14,7 +14,7 @@ export function setLocalStorage(key, data) {
   //check if key exists before setting
 
   localStorage.setItem(key, JSON.stringify(data));
-  
+
 }
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
@@ -113,10 +113,10 @@ export async function addProductToCart(productId) {
   if (itemInCart) {
     // increment quantity if item in cart
     itemInCart.Quantity += 1;
-    
+
   } else {
     // get the product from the data source
-    const dataSource = new ProductData()
+    const dataSource = new ExternalServices()
     const product = await dataSource.findProductById(productId);
     // adding 'Quantity' key to product object before pushing it to cart.
     // this helps when adjusting quantities in the cart.

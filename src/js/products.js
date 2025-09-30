@@ -1,4 +1,4 @@
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 import ProductList from "./ProductList.mjs";
 import { loadHeaderFooter, capitalizeFirstLetter } from "./utils.mjs";
 
@@ -22,7 +22,7 @@ async function init() {
   const category = getCategoryFromUrl();
   updateCategoryTitle(category);
 
-  const dataSource = new ProductData();
+  const dataSource = new ExternalServices();
   const listElement = document.querySelector(".product-list");
 
   const productList = new ProductList(category, dataSource, listElement);
